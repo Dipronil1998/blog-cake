@@ -33,6 +33,10 @@ class CreateUsers extends AbstractMigration
                 'limit' => 64,
                 'null' => false
             ])
+            ->addColumn('image', 'string', [
+                'null' => false,
+                'default'=>null
+            ])
             ->addColumn('role_id', 'uuid', [
                 'null' => false
             ])

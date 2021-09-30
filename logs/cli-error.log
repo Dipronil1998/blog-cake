@@ -4738,3 +4738,33 @@ PHPUnit\TextUI\Command::run() - ROOT\vendor\phpunit\phpunit\src\TextUI\Command.p
 PHPUnit\TextUI\Command::main() - ROOT\vendor\phpunit\phpunit\src\TextUI\Command.php, line 96
 [main] - ROOT\vendor\phpunit\phpunit\phpunit, line 92
 
+2021-09-25 06:41:22 Error: [PDOException] SQLSTATE[22008]: Datetime field overflow: 7 ERROR:  date/time field value out of range: "9/25/21, 6:41 AM"
+HINT:  Perhaps you need a different "datestyle" setting. in D:\blog\vendor\robmorgan\phinx\src\Phinx\Db\Adapter\PdoAdapter.php on line 334
+Stack Trace:
+- D:\blog\vendor\robmorgan\phinx\src\Phinx\Db\Adapter\PdoAdapter.php:334
+- D:\blog\vendor\robmorgan\phinx\src\Phinx\Db\Adapter\AdapterWrapper.php:180
+- D:\blog\vendor\robmorgan\phinx\src\Phinx\Db\Adapter\TimedOutputAdapter.php:102
+- D:\blog\vendor\robmorgan\phinx\src\Phinx\Db\Adapter\AdapterWrapper.php:180
+- D:\blog\vendor\robmorgan\phinx\src\Phinx\Db\Table.php:652
+- D:\blog\vendor\robmorgan\phinx\src\Phinx\Db\Table.php:624
+- D:\blog\vendor\robmorgan\phinx\src\Phinx\Db\Table.php:682
+- D:\blog\config\Seeds\RolesSeed.php:44
+- D:\blog\vendor\robmorgan\phinx\src\Phinx\Migration\Manager\Environment.php:146
+- D:\blog\vendor\robmorgan\phinx\src\Phinx\Migration\Manager.php:405
+- D:\blog\vendor\robmorgan\phinx\src\Phinx\Migration\Manager.php:545
+- D:\blog\vendor\robmorgan\phinx\src\Phinx\Console\Command\SeedRun.php:102
+- D:\blog\vendor\cakephp\migrations\src\Command\Phinx\CommandTrait.php:37
+- D:\blog\vendor\cakephp\migrations\src\Command\Phinx\Seed.php:76
+- D:\blog\vendor\symfony\console\Command\Command.php:299
+- D:\blog\vendor\symfony\console\Application.php:978
+- D:\blog\vendor\symfony\console\Application.php:295
+- D:\blog\vendor\symfony\console\Application.php:167
+- D:\blog\vendor\cakephp\migrations\src\Command\MigrationsCommand.php:126
+- D:\blog\vendor\cakephp\cakephp\src\Console\BaseCommand.php:179
+- D:\blog\vendor\cakephp\migrations\src\Command\MigrationsCommand.php:198
+- D:\blog\vendor\cakephp\cakephp\src\Console\CommandRunner.php:336
+- D:\blog\vendor\cakephp\cakephp\src\Console\CommandRunner.php:172
+- D:\blog\bin\cake.php:12
+
+
+

@@ -62,6 +62,10 @@ class Application extends BaseApplication
      */
     public function bootstrap(): void
     {
+        $this->addPlugin('CsvView');
+
+        $this->addPlugin('CakePdf');
+
         $this->addPlugin('Migrations');
 
         $this->addPlugin('Migrations');
@@ -169,6 +173,15 @@ class Application extends BaseApplication
             ],
             'loginUrl' => '/users/login',
         ]);
+
+        $authenticationService->loadAuthenticator('Authentication.Cookie', [
+            'fields' => [
+                'username' => 'email',
+                'password' => 'password',
+            ],
+            'loginUrl' => '/users/login',
+        ]);
+
 
         return $authenticationService;
     }

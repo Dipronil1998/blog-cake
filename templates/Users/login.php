@@ -38,8 +38,8 @@ $this->disableAutoLayout();
                     </div>
                     <div class="checkbox login-checkbox">
                         <label>
-                            <input type="checkbox" class="i-checks"> Remember me </label>
-                        <p class="help-block small">(if this is a private computer)</p>
+                        <?= $this->Form->control('remember_me', ['type' => 'checkbox']);?>
+
                     </div>
                     <div class="text-right">
                         <!--                        <button class="btn btn-success ">Go</button>-->

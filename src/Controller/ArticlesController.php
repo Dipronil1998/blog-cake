@@ -7,7 +7,8 @@ use App\Model\Table\UsersTable;
 use Authentication\Controller\Component\AuthenticationComponent;
 use Authorization\Controller\Component\AuthorizationComponent;
 use Cake\ORM\TableRegistry;
-
+use CodeItNow\BarcodeBundle\Utils\QrCode;
+use Cake\View\Helper\FormHelper;
 /**
  * Articles Controller
  *
@@ -44,6 +45,8 @@ class ArticlesController extends AppController
         $user1 = $this->request->getAttribute('identity');
 
 
+
+
         $this->set(compact('articles','user','user1'));
     }
 
@@ -60,7 +63,19 @@ class ArticlesController extends AppController
             'contain'=>['Categories']
         ]);
         $user = $this->request->getAttribute('identity');
-        $this->set(compact('article','user'));
+        $qrCode=new QrCode();
+        $qrCode
+            ->setText(" $article->title  $article->body  \n $article->created \n $article->modified")
+            ->setSize(200)
+            ->setPadding(10)
+            ->setErrorCorrection('high')
+            ->setForegroundColor(array('r'=>0,'g'=>0,'b'=>0,'a'=>0))
+            ->setBackgroundColor(array('r'=>255,'g'=>255,'b'=>255,'a'=>0))
+            ->setLabelFontSize(16)
+            ->setImageType(QrCode::IMAGE_TYPE_PNG);
+        $img_qrcode= '<img src="data:'.$qrCode->getContentType().';base64,'.$qrCode->generate().'"/>';
+
+        $this->set(compact('article','user','img_qrcode'));
 
     }
 
@@ -138,4 +153,23 @@ class ArticlesController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+
+    public function pdf($id = null)
+    {
+        $this->viewBuilder()->enableAutoLayout(false);
+        $report = $this->Articles->get($id);
+        $this->viewBuilder()->setClassName('CakePdf.Pdf');
+        $this->viewBuilder()->setOption(
+            'pdfConfig',
+            [
+                'orientation' => 'portrait',
+                'download' => true, // This can be omitted if "filename" is specified.
+                'filename' => 'Report_' . $id . '.pdf' //// This can be omitted if you want file name based on URL.
+            ]
+        );
+        $this->set(compact('report'));
+    }
+
+
 }

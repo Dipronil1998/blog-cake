@@ -15,7 +15,9 @@
             <div class="hpanel">
                 <div class="panel-body">
                     <?php
-                    echo $this->Form->create($user);
+                    echo $this->Form->create($user,[
+                        'type'=>'file'
+                    ]);
                     ?>
                     <div class="row">
                         <div class="form-group col-lg-6">
@@ -32,6 +34,19 @@
                                 'label'=>false,
                                 'class'=>'form-control',
                             ]) ?>
+                        </div>
+
+                        <div class="form-group col-lg-12">
+                            <label>Update Image</label>
+                            <?= $this->Form->file('image_file',[
+                                'label'=>false,
+                                'class'=>'form-control',
+                            ]) ?>
+                            <?= $this->Html->image($user->image,[
+                                'height'=>100,
+                                'width'=>100,
+                                'value'=>''
+                            ]); ?>
                         </div>
 
                     </div>

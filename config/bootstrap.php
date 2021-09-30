@@ -217,3 +217,27 @@ TypeFactory::map('time', StringType::class);
 //Inflector::rules('plural', ['/^(inflect)or$/i' => '\1ables']);
 //Inflector::rules('irregular', ['red' => 'redlings']);
 //Inflector::rules('uninflected', ['dontinflectme']);
+
+Configure::write('CakePdf', [
+    'engine' => [
+        'className' => 'CakePdf.DomPdf',
+        'options' => [
+            'isRemoteEnabled' => true,
+            'isHtml5ParserEnabled' => true,
+            'pdfBackend' => 'auto',
+            'isPhpEnabled'=>true,
+        ],
+        'chroot' => [
+            WWW_ROOT,
+        ],
+    ],
+    'margin' => [
+        'bottom' => 10,
+        'left' => 10,
+        'right' => 10,
+        'top' => 10
+    ],
+    'orientation' => 'portrait',
+    'download' => true,
+]);
+

@@ -1,10 +1,24 @@
 <?php
 /**
  * @var App\View\AppView $this
- * @var \Cake\Datasource\ResultSetInterface $articles
+ * @var \Cake\Datasource\ResultSetInterface $users
+ *  @var \App\Model\Entity\Users $img_qrcode
+
+template
  */
 ?>
 <br><br><br>
+<?= $this->Form->create(null,['type'=>'get'])?>
+<?= $this->Form->control('q',['label'=>'Search','value'=>$this->getRequest()->getQuery('q')])?>
+<?= $this->Form->submit()?>
+<?= $this->Form->end()?>
+
+<?= $this->Html->link('Download CSV', ['action' => 'csv']) ?>
+
+<?= $this->Form->create(null, ['url'=> ['action' => 'excel',], 'type'=>'POST']); ?>
+<button type="submit" class="btn btn-primary">Download</button>
+<?= $this->Form->end() ?>
+
 <div class="breadcome-area">
     <div class="product-status mg-b-15">
         <div class="container-fluid">
@@ -19,7 +33,7 @@
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Email</th>
-                                    <th>Role</th>
+                                    <th>Image</th>
                                     <th>Created</th>
                                     <th>Modified</th>
                                     <th>Action</th>
@@ -34,12 +48,12 @@
                                     <td><?= $user->first_name ?></td>
                                     <td><?= $user->last_name ?></td>
                                     <td><?= $user->email ?></td>
-                                    <td><?= $user->role->title ?></td>
+                                    <td><img src="img/<?= $user->image ?>" alt="cannot load"></td>
                                     <td><?= $user->created->format(DATE_RFC850) ?></td>
                                     <td><?= $user->modified->format(DATE_RFC850) ?></td>
                                     <td>
-
-                                    <?php if( $user->role_id!="7594fbb1-1a31-4236-b636-73de2352a703"){?>
+                                    <?= $this->Form->postLink("view", ['controller'=>'Users','action' => 'view', $user->id]) ?>
+                                    <?php if( $user->role_id!="a75f7e34-837a-4912-8abf-3078fd7017ec"){?>
 
                                         <?= $this->Form->postLink(
                                             'Delete',

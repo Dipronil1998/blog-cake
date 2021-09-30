@@ -85,11 +85,24 @@ class UsersTable extends Table
             ->notEmptyString('email')
             ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
+
+
         $validator
             ->scalar('password')
             ->maxLength('password', 64)
             ->requirePresence('password', 'create')
             ->notEmptyString('password');
+
+
+//        $validator
+//            ->scalar('image')
+//            ->requirePresence('image', 'input')
+//            ->add('image', [
+//                'validExtension' => [
+//                    'rule' => ['extension',['jpeg', 'png', 'jpg']],
+//                    'message' => 'These files extension are allowed: .jpeg, .png, .jpg'
+//                ]]);
+
 
         return $validator
             ->notEmptyString('email', 'An email is required')

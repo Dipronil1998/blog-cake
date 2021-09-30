@@ -19,6 +19,7 @@ $this->disableAutoLayout();
                     <?= $this->Form->create(null,[
                         'controller'=>'Users',
                         'action'=>'add',
+                        'type' => 'file'
                     ]) ?>
                     <div class="row">
                         <div class="form-group col-lg-6">
@@ -46,6 +47,13 @@ $this->disableAutoLayout();
                         <div class="form-group col-lg-12">
                             <label>Password</label>
                             <?= $this->Form->control('password',[
+                                'label'=>false,
+                                'class'=>'form-control',
+                            ]) ?>
+                        </div>
+                        <div class="form-group col-lg-12">
+                            <label>Insert Image</label>
+                            <?= $this->Form->file('image_file',[
                                 'label'=>false,
                                 'class'=>'form-control',
                             ]) ?>

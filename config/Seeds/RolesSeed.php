@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
+use Cake\I18n\Time;
 use Migrations\AbstractSeed;
 
 /**
@@ -20,22 +21,23 @@ class RolesSeed extends AbstractSeed
      */
     public function run()
     {
+        $time = (new Time())->format('Y-m-d H:i:s');
         $data = [
             [
                 'id' => \Cake\Utility\Text::uuid(),
                 'code'=>'1',
                 'title' => 'Admin',
                 'description' => 'Administrator',
-                'created' => new \Cake\I18n\Time(),
-                'modified' => new \Cake\I18n\Time(),
+                'created' => $time,
+                'modified' => $time,
             ],
             [
                 'id' => \Cake\Utility\Text::uuid(),
                 'code'=>'2',
                 'title' => 'author',
                 'description' => 'Writer',
-                'created' => new \Cake\I18n\Time(),
-                'modified' => new \Cake\I18n\Time(),
+                'created' => $time,
+                'modified' => $time,
             ],
         ];
 
